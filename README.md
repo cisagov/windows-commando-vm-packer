@@ -1,6 +1,6 @@
-# skeleton-packer 💀📦 #
+# windows-commando-vm-packer 💀📦 #
 
-[![GitHub Build Status](https://github.com/cisagov/skeleton-packer/workflows/build/badge.svg)](https://github.com/cisagov/skeleton-packer/actions)
+[![GitHub Build Status](https://github.com/cisagov/windows-commando-vm-packer/workflows/build/badge.svg)](https://github.com/cisagov/windows-commando-vm-packer/actions)
 
 This is a generic skeleton project that can be used to quickly get a
 new [cisagov](https://github.com/cisagov) GitHub
@@ -49,7 +49,7 @@ of the Project Setup README.
 
 If you have appropriate permissions for the repository you can view existing
 secrets on the
-[appropriate page](https://github.com/cisagov/skeleton-packer/settings/secrets)
+[appropriate page](https://github.com/cisagov/windows-commando-vm-packer/settings/secrets)
 in the repository's settings.
 
 IMPORTANT: The account where your images will be built must have a VPC and
@@ -94,13 +94,13 @@ Add the following blocks to your AWS credentials file (be sure to replace the
 dummy account ID in the `role_arn` with your own):
 
 ```console
-[build-skeleton-packer]
+[build-windows-commando-vm-packer]
 aws_access_key_id = AKIAXXXXXXXXXXXXXXXX
 aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-[cool-images-ec2amicreate-skeleton-packer]
-role_arn = arn:aws:iam::111111111111:role/EC2AMICreate-build-skeleton-packer
-source_profile = build-skeleton-packer
+[cool-images-ec2amicreate-windows-commando-vm-packer]
+role_arn = arn:aws:iam::111111111111:role/EC2AMICreate-build-windows-commando-vm-packer
+source_profile = build-windows-commando-vm-packer
 role_session_name = example
 ```
 
@@ -130,7 +130,7 @@ Here is an example of how to kick off a pre-release build:
 ```console
 pip install --requirement requirements-dev.txt
 ansible-galaxy install --force --force-with-deps --role-file src/requirements.yml
-AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui -var release_tag=$(./bump_version.sh show) -var is_prerelease=true src/packer.pkr.hcl
+AWS_PROFILE=cool-images-ec2amicreate-windows-commando-vm-packer packer build --timestamp-ui -var release_tag=$(./bump_version.sh show) -var is_prerelease=true src/packer.pkr.hcl
 ```
 
 If you are satisfied with your pre-release image, you can easily create a release
@@ -147,7 +147,7 @@ region_kms_keys = {
 ```
 
 ```console
-AWS_PROFILE=cool-images-ec2amicreate-skeleton-packer packer build --timestamp-ui -var-file release.pkrvars.hcl src/packer.pkr.hcl
+AWS_PROFILE=cool-images-ec2amicreate-windows-commando-vm-packer packer build --timestamp-ui -var-file release.pkrvars.hcl src/packer.pkr.hcl
 ```
 
 ### Giving Other AWS Accounts Permission to Launch the Image ###
