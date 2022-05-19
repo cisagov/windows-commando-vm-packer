@@ -2,10 +2,11 @@
 
 [![GitHub Build Status](https://github.com/cisagov/windows-commando-vm-packer/workflows/build/badge.svg)](https://github.com/cisagov/windows-commando-vm-packer/actions)
 
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) GitHub
-[Packer](https://packer.io) project started. This skeleton project
-contains [licensing information](LICENSE), as well as
+This project can be used to create Amazon Machine Images based on
+[Windows Commando VM](https://www.mandiant.com/resources/commando-vm-windows-offensive-distribution),
+a Windows penetration testing distribution.
+
+This project contains [licensing information](LICENSE), as well as
 [pre-commit hooks](https://pre-commit.com) and
 [GitHub Actions](https://github.com/features/actions) configurations
 appropriate for the major languages that we use.
