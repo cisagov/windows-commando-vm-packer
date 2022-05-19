@@ -10,5 +10,5 @@ module "iam_user" {
   }
 
   ssm_parameters = ["/windows/commando/administrator/password"]
-  user_name      = "build-windows-server-packer"
+  user_name      = "build-windows-commando-packer"
 }
