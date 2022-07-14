@@ -1,9 +1,7 @@
 # windows-commando-vm-packer 💀📦 #
 
 [![GitHub Build Status](https://github.com/cisagov/windows-commando-vm-packer/workflows/build/badge.svg)](https://github.com/cisagov/windows-commando-vm-packer/actions)
-
-This project can be used to create a custom Amazon Machine Image based on
-Windows Server 2022.
+This project is based on FireEye's Complete Mandiant Offensive VM (aka [Commando VM](https://github.com/mandiant/commando-vm)). It uses packer to provision a custom Windows Server 2022 image, install security packages, and apply custom configuration.
 
 ## Pre-requisites ##
 
