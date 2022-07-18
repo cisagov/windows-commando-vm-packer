@@ -9,6 +9,6 @@ module "iam_user" {
     aws.images-staging-ssm    = aws.images-staging-ssm
   }
 
-  ssm_parameters = ["/windows/server/administrator/password"]
-  user_name      = "build-windows-server-packer"
+  ssm_parameters = ["/windows/commando/administrator/password"]
+  user_name      = "build-windows-commando-vm-packer"
 }
