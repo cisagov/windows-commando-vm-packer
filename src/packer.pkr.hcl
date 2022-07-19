@@ -85,7 +85,7 @@ source "amazon-ebs" "windows" {
     volume_size           = 8
     volume_type           = "gp3"
   }
-  ami_name                    = "windows-server-2022-${local.timestamp}-x86_64-ebs"
+  ami_name                    = "windows-commando-vm-${local.timestamp}-x86_64-ebs"
   ami_regions                 = var.ami_regions
   associate_public_ip_address = true
   communicator                = "winrm"
@@ -109,7 +109,7 @@ source "amazon-ebs" "windows" {
     }
   }
   tags = {
-    Application        = "Windows Server 2022"
+    Application        = "Windows Commando VM"
     Base_AMI_Name      = data.amazon-ami.windows_server_2022.name
     GitHub_Release_URL = var.release_url
     OS_Version         = "Windows Server 2022"

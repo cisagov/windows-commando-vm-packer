@@ -29,7 +29,7 @@ data "aws_ami_ids" "historical_amis" {
   filter {
     name = "name"
     values = [
-      "windows-server-2022-*-x86_64-ebs",
+      "windows-commando-vm-*-x86_64-ebs",
     ]
   }
 
