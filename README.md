@@ -2,13 +2,10 @@
 
 [![GitHub Build Status](https://github.com/cisagov/windows-commando-vm-packer/workflows/build/badge.svg)](https://github.com/cisagov/windows-commando-vm-packer/actions)
 
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) GitHub
-[Packer](https://packer.io) project started. This skeleton project
-contains [licensing information](LICENSE), as well as
-[pre-commit hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for the major languages that we use.
+This project is based on FireEye's Complete Mandiant Offensive VM
+(aka Commando VM). It uses packer to provision a custom Windows
+Server 2022 image, install security packages, and apply custom
+configuration.
 
 ## Pre-requisites ##
 
@@ -116,6 +113,8 @@ The [Packer template](src/packer.pkr.hcl) defines a number of variables:
 | release\_tag | The GitHub release tag to use for the tags applied to the created AMI. | `string` | `""` | no |
 | release\_url | The GitHub release URL to use for the tags applied to the created AMI. | `string` | `""` | no |
 | skip\_create\_ami | Indicate if Packer should not create the AMI. | `bool` | `false` | no |
+| winrm\_password | The password used to connect to the instance via WinRM. | `string` | n/a | yes |
+| winrm\_username | The username used to connect to the instance via WinRM. | `string` | `"Administrator"` | no |
 
 Changing these defaults can be done through a `.pkrvars.hcl` file:
 
@@ -144,6 +143,7 @@ region_kms_keys = {
   "us-west-1": "alias/cool-amis",
   "us-west-2": "alias/cool-amis",
 }
+winrm_password = "your-winrm-password"
 ```
 
 ```console
@@ -165,13 +165,6 @@ terraform workspace select ENVIRONMENT_TYPE
 terraform init --upgrade=true
 terraform apply
 ```
-
-## New Repositories from a Skeleton ##
-
-Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
-for step-by-step instructions on how to start a new repository from
-a skeleton. This will save you time and effort when configuring a
-new repository!
 
 ## Contributing ##
 
