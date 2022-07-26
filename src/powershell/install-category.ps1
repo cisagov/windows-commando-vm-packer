@@ -1,3 +1,7 @@
 $category = $env:CATEGORY
 $ErrorActionPreference = "Continue"
-iex "choco install C:\\packages\\$category.config -y"
+
+try {
+    iex "choco install C:\\packages\\$category.config -y"
+}
+catch { }
