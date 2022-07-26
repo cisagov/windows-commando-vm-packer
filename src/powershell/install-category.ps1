@@ -1,7 +1,12 @@
+$ErrorActionPreference = "SilentlyContinue"
+
 $category = $env:CATEGORY
-$ErrorActionPreference = "Continue"
 
 try {
-    iex "choco install C:\\packages\\$category.config -y"
+    $ret = iex "choco install C:\\packages\\$category.config -y"
 }
-catch { }
+catch {
+
+}
+
+exit 0
