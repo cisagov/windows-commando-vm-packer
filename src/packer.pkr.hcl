@@ -150,15 +150,11 @@ build {
     # Wait 90 seconds before executing the check-defender.ps1 powershell script.
     # This gives a generous grace period between restarting Windows and running the second provisioner.
     pause_before = "30s"
-    scripts      = ["src/powershell/check-defender.ps1"]
-  }
-
-  provisioner "powershell" {
-    scripts = ["src/powershell/enable-rdp.ps1"]
-  }
-
-  provisioner "powershell" {
-    scripts = ["src/powershell/install-chocolatey.ps1"]
+    scripts = [
+      "src/powershell/check-defender.ps1",
+      "src/powershell/enable-rdp.ps1",
+      "src/powershell/install-chocolatey.ps1"
+    ]
   }
 
   provisioner "powershell" {
@@ -172,7 +168,63 @@ build {
   }
 
   provisioner "powershell" {
-    scripts = ["src/powershell/install-packages.ps1"]
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=general"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=evasion"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=exploitation"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=information-gathering"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=kali"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=networking"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=passwords"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=reverse-engineering"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=utilities"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=vulnerability-analysis"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=web-applications"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=word-lists"]
   }
 
   provisioner "windows-restart" {
