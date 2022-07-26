@@ -15,6 +15,6 @@ $packages = @(
 )
 
 foreach ($p in $packages) {
-    iex "choco install C:\\packages\\$p.config -y -force"
-    Get-PSDrive
+    iex "choco upgrade C:\\packages\\$p.config -y"
+    refreshenv
 }
