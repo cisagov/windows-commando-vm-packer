@@ -172,7 +172,7 @@ build {
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\general.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\general.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "windows-restart" {
@@ -182,47 +182,47 @@ build {
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\evasion.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\evasion.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\exploitation.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\exploitation.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\information-gathering.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\information-gathering.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\kali.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\kali.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\networking.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\networking.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\passwords.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\passwords.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\reverse-engineering.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\reverse-engineering.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\utilities.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\utilities.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\vulnerability-analysis.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\vulnerability-analysis.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\web-applications.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\web-applications.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "powershell" {
-    inline = ["choco install C:\\packages\\word-lists.config -y --no-progress --pre --ignore-dependencies --ignorepackagecodes"]
+    inline = ["choco install C:\\packages\\word-lists.config -y --no-progress --ignore-dependencies --ignorepackagecodes"]
   }
 
   provisioner "windows-restart" {
