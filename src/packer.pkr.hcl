@@ -80,9 +80,8 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 source "amazon-ebs" "windows" {
   ami_block_device_mappings {
     delete_on_termination = true
-    device_name           = "/dev/xvda"
-    encrypted             = true
-    volume_size           = 8
+    device_name           = "/dev/sda1"
+    volume_size           = 1000
     volume_type           = "gp3"
   }
   ami_name                    = "windows-commando-vm-${local.timestamp}-x86_64-ebs"
@@ -94,9 +93,8 @@ source "amazon-ebs" "windows" {
   kms_key_id                  = var.build_region_kms
   launch_block_device_mappings {
     delete_on_termination = true
-    device_name           = "/dev/xvda"
-    encrypted             = true
-    volume_size           = 8
+    device_name           = "/dev/sda1"
+    volume_size           = 1000
     volume_type           = "gp3"
   }
   region             = var.build_region
@@ -151,11 +149,91 @@ build {
   provisioner "powershell" {
     # Wait 90 seconds before executing the check-defender.ps1 powershell script.
     # This gives a generous grace period between restarting Windows and running the second provisioner.
-    pause_before = "90s"
-    scripts      = ["src/powershell/check-defender.ps1"]
+    pause_before = "30s"
+    scripts = [
+      "src/powershell/check-defender.ps1",
+      "src/powershell/enable-rdp.ps1",
+      "src/powershell/install-chocolatey.ps1"
+    ]
   }
 
   provisioner "powershell" {
-    scripts = ["src/powershell/enable-rdp.ps1"]
+    inline = ["mkdir C:\\packages"]
+  }
+
+  provisioner "file" {
+    # NOTE: docker packages cause an error, might need to manually install docker
+    source      = "src/packages/"
+    destination = "C:\\packages"
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=general"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=evasion"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=exploitation"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=information-gathering"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=kali"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=networking"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=passwords"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=reverse-engineering"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=utilities"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=vulnerability-analysis"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=web-applications"]
+  }
+
+  provisioner "powershell" {
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=word-lists"]
+  }
+
+  provisioner "windows-restart" {
+    # Wait a maximum of 30 minutes for Windows to restart.
+    # The build will fail if the restart process takes longer than 30 minutes.
+    restart_timeout = "30m"
+  }
+
+  provisioner "powershell" {
+    inline = ["whoami"]
   }
 }
