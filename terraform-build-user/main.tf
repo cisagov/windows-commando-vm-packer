@@ -11,4 +11,8 @@ module "iam_user" {
 
   ssm_parameters = ["/windows/commando/administrator/password"]
   user_name      = "build-windows-commando-vm-packer"
+
+  # This image can take a while to build, so we set the max session
+  # duration to 2 hours.
+  ec2amicreate_role_max_session_duration = 2 * 60 * 60
 }
