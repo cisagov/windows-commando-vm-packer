@@ -162,12 +162,12 @@ build {
   }
 
   provisioner "file" {
-    # NOTE: docker packages cause an error, might need to manually install docker
     source      = "src/packages/"
     destination = "C:\\packages"
   }
 
   provisioner "powershell" {
+    # Install general packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=general"]
   }
@@ -179,6 +179,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install evasion packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=evasion"]
   }
@@ -201,6 +202,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install information gathering packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=information-gathering"]
   }
@@ -212,6 +214,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install kali packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=kali"]
   }
@@ -223,6 +226,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install networking packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=networking"]
   }
@@ -234,6 +238,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install password packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=passwords"]
   }
@@ -245,6 +250,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install reverse-engineering packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=reverse-engineering"]
   }
@@ -256,6 +262,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install utility packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=utilities"]
   }
@@ -278,6 +285,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install web-application packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=web-applications"]
   }
@@ -289,6 +297,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install word-list packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=word-lists"]
   }
@@ -297,9 +306,5 @@ build {
     # Wait a maximum of 30 minutes for Windows to restart.
     # The build will fail if the restart process takes longer than 30 minutes.
     restart_timeout = "30m"
-  }
-
-  provisioner "powershell" {
-    inline = ["whoami"]
   }
 }
