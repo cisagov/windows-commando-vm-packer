@@ -8,7 +8,7 @@ Write-Output "Installing packages for category $category"
 $xml.SelectNodes('//packages/package') | ForEach-Object {
     $packageID = $_.id
     Write-Output "### current package: $packageID ####################################################"
-    try { choco upgrade $packageID -y --no-progress }
+    try { choco upgrade $packageID --yes --no-progress }
     catch { }
 }
 
