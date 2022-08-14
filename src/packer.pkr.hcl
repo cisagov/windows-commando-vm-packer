@@ -81,7 +81,8 @@ source "amazon-ebs" "windows" {
   ami_block_device_mappings {
     delete_on_termination = true
     device_name           = "/dev/sda1"
-    volume_size           = 1000
+    encrypted             = true
+    volume_size           = 200
     volume_type           = "gp3"
   }
   ami_name                    = "windows-commando-vm-${local.timestamp}-x86_64-ebs"
@@ -94,7 +95,8 @@ source "amazon-ebs" "windows" {
   launch_block_device_mappings {
     delete_on_termination = true
     device_name           = "/dev/sda1"
-    volume_size           = 1000
+    encrypted             = true
+    volume_size           = 200
     volume_type           = "gp3"
   }
   region             = var.build_region
