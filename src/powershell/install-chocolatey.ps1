@@ -8,6 +8,7 @@ iex "choco sources add --name fireeye --source https://www.myget.org/F/fireeye/a
 iex "choco feature enable --name allowGlobalConfirmation"
 iex "choco feature enable --name allowEmptyChecksums"
 
+# Disable timeout settings to help with packages that take a long time to install
 & powercfg -change -monitor-timeout-ac 0 | Out-Null
 & powercfg -change -monitor-timeout-dc 0 | Out-Null
 & powercfg -change -disk-timeout-ac 0 | Out-Null
@@ -17,5 +18,6 @@ iex "choco feature enable --name allowEmptyChecksums"
 & powercfg -change -hibernate-timeout-ac 0 | Out-Null
 & powercfg -change -hibernate-timeout-dc 0 | Out-Null
 
+# Install Microsoft C and C++ runtime libraries
 iex "choco upgrade --yes vcredist-all.flare"
 refreshenv
