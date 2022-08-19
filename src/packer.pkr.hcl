@@ -160,10 +160,12 @@ build {
   }
 
   provisioner "powershell" {
+    # Create "packages" directory before uploading them in the next provisioner.
     inline = ["mkdir C:\\packages"]
   }
 
   provisioner "file" {
+    # Upload package lists to the "packages" directory.
     source      = "src/packages/"
     destination = "C:\\packages"
   }
