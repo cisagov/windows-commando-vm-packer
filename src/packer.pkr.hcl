@@ -149,8 +149,8 @@ build {
   }
 
   provisioner "powershell" {
-    # Wait 90 seconds before executing the check-defender.ps1 powershell script.
-    # This gives a generous grace period between restarting Windows and running the second provisioner.
+    # Wait 30 seconds before executing the next provisioner.
+    # This gives a grace period between restarting Windows and running the next provisioner.
     pause_before = "30s"
     scripts = [
       "src/powershell/check-defender.ps1",
