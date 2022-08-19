@@ -193,6 +193,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install exploitation packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=exploitation"]
   }
@@ -276,6 +277,7 @@ build {
   }
 
   provisioner "powershell" {
+    # Install vulnerability-analysis packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=vulnerability-analysis"]
   }
