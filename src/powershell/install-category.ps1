@@ -1,5 +1,3 @@
-$ErrorActionPreference = "SilentlyContinue"
-
 $category = $env:CATEGORY
 Write-Output "Installing packages for category $category"
 
@@ -8,8 +6,7 @@ Write-Output "Installing packages for category $category"
 $xml.SelectNodes('//packages/package') | ForEach-Object {
     $packageID = $_.id
     Write-Output "### current package: $packageID ####################################################"
-    try { choco upgrade $packageID --yes --no-progress }
-    catch { }
+    choco upgrade $packageID --yes --no-progress
 }
 
 exit 0
