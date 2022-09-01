@@ -183,6 +183,18 @@ build {
   }
 
   provisioner "powershell" {
+    # Install general packages
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=docker"]
+  }
+
+  provisioner "windows-restart" {
+    # Wait a maximum of 30 minutes for Windows to restart.
+    # The build will fail if the restart process takes longer than 30 minutes.
+    restart_timeout = "30m"
+  }
+
+  provisioner "powershell" {
     # Install evasion packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=evasion"]
