@@ -183,7 +183,7 @@ build {
   }
 
   provisioner "powershell" {
-    # Install general packages
+    # Install Docker packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=docker"]
   }
@@ -231,7 +231,7 @@ build {
   }
 
   provisioner "powershell" {
-    # Install kali packages
+    # Install Kali packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=kali"]
   }
@@ -267,7 +267,7 @@ build {
   }
 
   provisioner "powershell" {
-    # Install reverse-engineering packages
+    # Install reverse engineering packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=reverse-engineering"]
   }
@@ -291,7 +291,7 @@ build {
   }
 
   provisioner "powershell" {
-    # Install vulnerability-analysis packages
+    # Install vulnerability analysis packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=vulnerability-analysis"]
   }
@@ -303,7 +303,7 @@ build {
   }
 
   provisioner "powershell" {
-    # Install web-application packages
+    # Install web application packages
     script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=web-applications"]
   }
@@ -315,9 +315,9 @@ build {
   }
 
   provisioner "powershell" {
-    # Install word-list packages
+    # Install wordlist packages
     script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=word-lists"]
+    environment_vars = ["CATEGORY=wordlists"]
   }
 
   provisioner "windows-restart" {
