@@ -80,7 +80,7 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 source "amazon-ebs" "windows" {
   ami_block_device_mappings {
     delete_on_termination = true
-    device_name           = "/dev/sda1"
+    device_name           = "/dev/xvda"
     encrypted             = true
     volume_size           = 200
     volume_type           = "gp3"
@@ -94,7 +94,7 @@ source "amazon-ebs" "windows" {
   kms_key_id                  = var.build_region_kms
   launch_block_device_mappings {
     delete_on_termination = true
-    device_name           = "/dev/sda1"
+    device_name           = "/dev/xvda"
     encrypted             = true
     volume_size           = 200
     volume_type           = "gp3"
