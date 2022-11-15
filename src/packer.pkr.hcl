@@ -82,7 +82,7 @@ source "amazon-ebs" "windows" {
     delete_on_termination = true
     device_name           = "/dev/xvda"
     encrypted             = true
-    volume_size           = 256
+    volume_size           = 512
     volume_type           = "gp3"
   }
   ami_name                    = "windows-commando-vm-${local.timestamp}-x86_64-ebs"
@@ -96,7 +96,7 @@ source "amazon-ebs" "windows" {
     delete_on_termination = true
     device_name           = "/dev/xvda"
     encrypted             = true
-    volume_size           = 256
+    volume_size           = 512
     volume_type           = "gp3"
   }
   region             = var.build_region
