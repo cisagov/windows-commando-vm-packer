@@ -325,4 +325,13 @@ build {
     # The build will fail if the restart process takes longer than 30 minutes.
     restart_timeout = "30m"
   }
+
+  provisioner "powershell" {
+    inline = [
+      # Print information about disk size and usage
+      "wmic logicaldisk get size,freespace,caption",
+      # List each installed chocolatey package
+      "choco list --local-only"
+    ]
+  }
 }
