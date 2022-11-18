@@ -325,4 +325,8 @@ build {
     # The build will fail if the restart process takes longer than 30 minutes.
     restart_timeout = "30m"
   }
+
+  provisioner "powershell" {
+    inline = ["Write-Output 'Complete!'"]
+  }
 }
