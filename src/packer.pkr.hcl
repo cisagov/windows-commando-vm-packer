@@ -82,7 +82,7 @@ source "amazon-ebs" "windows" {
     delete_on_termination = true
     device_name           = "/dev/xvda"
     encrypted             = true
-    volume_size           = 1024
+    volume_size           = 2048
     volume_type           = "gp3"
   }
   ami_name                    = "windows-commando-vm-${local.timestamp}-x86_64-ebs"
@@ -308,17 +308,17 @@ build {
     environment_vars = ["CATEGORY=web-applications"]
   }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install wordlist packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=wordlists"]
-  }
+  // provisioner "powershell" {
+  //   # Install wordlist packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=wordlists"]
+  // }
 
   provisioner "windows-restart" {
     # Wait a maximum of 30 minutes for Windows to restart.
