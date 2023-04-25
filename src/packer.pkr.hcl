@@ -230,17 +230,17 @@ build {
     restart_timeout = "30m"
   }
 
-  provisioner "powershell" {
-    # Install Kali packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=kali"]
-  }
+  // provisioner "powershell" {
+  //   # Install Kali packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=kali"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
   // provisioner "powershell" {
   //   # Install networking packages
@@ -302,11 +302,11 @@ build {
     restart_timeout = "30m"
   }
 
-  provisioner "powershell" {
-    # Install web application packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=web-applications"]
-  }
+  // provisioner "powershell" {
+  //   # Install web application packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=web-applications"]
+  // }
 
   // provisioner "windows-restart" {
   //   # Wait a maximum of 30 minutes for Windows to restart.
@@ -320,11 +320,11 @@ build {
   //   environment_vars = ["CATEGORY=wordlists"]
   // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
   provisioner "powershell" {
     inline = ["Write-Output 'Complete!'"]
