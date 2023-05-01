@@ -254,53 +254,53 @@ build {
   //   restart_timeout = "30m"
   // }
 
-  provisioner "powershell" {
-    # Install password packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=passwords"]
-  }
+  // provisioner "powershell" {
+  //   # Install password packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=passwords"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install reverse engineering packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=reverse-engineering"]
-  }
+  // provisioner "powershell" {
+  //   # Install reverse engineering packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=reverse-engineering"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install utility packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=utilities"]
-  }
+  // provisioner "powershell" {
+  //   # Install utility packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=utilities"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install vulnerability analysis packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=vulnerability-analysis"]
-  }
+  // provisioner "powershell" {
+  //   # Install vulnerability analysis packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=vulnerability-analysis"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
   // provisioner "powershell" {
   //   # Install web application packages
