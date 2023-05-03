@@ -7,7 +7,13 @@ Write-Output "[ ] Attempting to extend C drive volume"
 $originalVolumeSizeGB = $(Get-Volume -DriveLetter C).Size / 1GB
 
 # Partition the C drive to the maximum Amazon EBS volume size available
-Resize-Partition -DriveLetter C -Size $(Get-PartitionSupportedSize -DriveLetter C).SizeMax
+Resize-Partition -DriveLetter C -Size $(Get-PartitionSupportedSize -DriveLetter C).SizeMax -ErrorAction "continue"
+
+# Do not continue if the C drive volume is already extended
+if (!$?) {
+    Write-Output "[*] C drive volume is already extended"
+    return
+}
 
 # Rescan the disk to detect the updated volume size
 "rescan" | diskpart
