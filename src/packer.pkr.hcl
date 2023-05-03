@@ -82,7 +82,7 @@ source "amazon-ebs" "windows" {
     delete_on_termination = true
     device_name           = "/dev/xvda"
     encrypted             = true
-    volume_size           = 4096
+    volume_size           = 2048
     volume_type           = "gp3"
   }
   ami_name                    = "windows-commando-vm-${local.timestamp}-x86_64-ebs"
@@ -96,7 +96,7 @@ source "amazon-ebs" "windows" {
     delete_on_termination = true
     device_name           = "/dev/xvda"
     encrypted             = true
-    volume_size           = 4096
+    volume_size           = 2048
     volume_type           = "gp3"
   }
   region             = var.build_region
@@ -155,6 +155,7 @@ build {
     scripts = [
       "src/powershell/check-defender.ps1",
       "src/powershell/enable-rdp.ps1",
+      "src/powershell/extend-volume.ps1",
       "src/powershell/install-chocolatey.ps1"
     ]
   }
@@ -230,29 +231,29 @@ build {
     restart_timeout = "30m"
   }
 
-  // provisioner "powershell" {
-  //   # Install Kali packages
-  //   script           = "src/powershell/install-category.ps1"
-  //   environment_vars = ["CATEGORY=kali"]
-  // }
+  provisioner "powershell" {
+    # Install Kali packages
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=kali"]
+  }
 
-  // provisioner "windows-restart" {
-  //   # Wait a maximum of 30 minutes for Windows to restart.
-  //   # The build will fail if the restart process takes longer than 30 minutes.
-  //   restart_timeout = "30m"
-  // }
+  provisioner "windows-restart" {
+    # Wait a maximum of 30 minutes for Windows to restart.
+    # The build will fail if the restart process takes longer than 30 minutes.
+    restart_timeout = "30m"
+  }
 
-  // provisioner "powershell" {
-  //   # Install networking packages
-  //   script           = "src/powershell/install-category.ps1"
-  //   environment_vars = ["CATEGORY=networking"]
-  // }
+  provisioner "powershell" {
+    # Install networking packages
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=networking"]
+  }
 
-  // provisioner "windows-restart" {
-  //   # Wait a maximum of 30 minutes for Windows to restart.
-  //   # The build will fail if the restart process takes longer than 30 minutes.
-  //   restart_timeout = "30m"
-  // }
+  provisioner "windows-restart" {
+    # Wait a maximum of 30 minutes for Windows to restart.
+    # The build will fail if the restart process takes longer than 30 minutes.
+    restart_timeout = "30m"
+  }
 
   // provisioner "powershell" {
   //   # Install password packages
