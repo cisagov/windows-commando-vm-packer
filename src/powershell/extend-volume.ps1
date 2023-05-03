@@ -8,9 +8,10 @@ Resize-Partition -DriveLetter C -Size $(Get-PartitionSupportedSize -DriveLetter 
 
 # Verify the C drive volume was extended
 $volumeSize = Get-Volume -DriveLetter C
+$volumeSizeGB = $volumeSize.Size / 1GB
 Write-Output "[ ] Verifying C drive volume was extended"
 if ($volumeSize.Size -ne $volumeSize.SizeRemaining) {
     Write-Error "[X] Failed to extend C drive volume" -ErrorAction Stop
 }
 
-Write-Output "[*] Successfully extended C drive volume: $volumeSize"
+Write-Output "[*] Successfully extended C drive volume: $volumeSizeGB GB"
