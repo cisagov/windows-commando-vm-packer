@@ -11,7 +11,7 @@ Resize-Partition -DriveLetter C -Size $(Get-PartitionSupportedSize -DriveLetter 
 
 # Do not continue if the C drive volume is already extended
 if (!$?) {
-    Write-Output "[*] C drive volume is already extended"
+    Write-Output "[*] C drive volume is already extended: $originalVolumeSizeGB GB"
     return
 }
 
