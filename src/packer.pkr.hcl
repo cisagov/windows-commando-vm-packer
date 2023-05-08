@@ -96,6 +96,7 @@ source "amazon-ebs" "windows" {
     delete_on_termination = true
     device_name           = "/dev/xvda"
     encrypted             = true
+    no_device             = true
     volume_size           = 2048
     volume_type           = "gp3"
   }
