@@ -97,7 +97,7 @@ source "amazon-ebs" "windows" {
     device_name           = "/dev/xvda"
     encrypted             = true
     no_device             = true
-    volume_size           = 2048
+    volume_size           = 500
     volume_type           = "gp3"
   }
   region             = var.build_region
