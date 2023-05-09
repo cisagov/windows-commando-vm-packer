@@ -82,7 +82,7 @@ source "amazon-ebs" "windows" {
     delete_on_termination = true
     device_name           = "/dev/xvda"
     encrypted             = true
-    volume_size           = 2048
+    volume_size           = 500
     volume_type           = "gp3"
   }
   ami_name                    = "windows-commando-vm-${local.timestamp}-x86_64-ebs"
@@ -184,77 +184,77 @@ build {
     restart_timeout = "30m"
   }
 
-  provisioner "powershell" {
-    # Install Docker packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=docker"]
-  }
+  // provisioner "powershell" {
+  //   # Install Docker packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=docker"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install evasion packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=evasion"]
-  }
+  // provisioner "powershell" {
+  //   # Install evasion packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=evasion"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install exploitation packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=exploitation"]
-  }
+  // provisioner "powershell" {
+  //   # Install exploitation packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=exploitation"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install information gathering packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=information-gathering"]
-  }
+  // provisioner "powershell" {
+  //   # Install information gathering packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=information-gathering"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install Kali packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=kali"]
-  }
+  // provisioner "powershell" {
+  //   # Install Kali packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=kali"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install networking packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=networking"]
-  }
+  // provisioner "powershell" {
+  //   # Install networking packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=networking"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
   // provisioner "powershell" {
   //   # Install password packages
