@@ -156,8 +156,8 @@ build {
     scripts = [
       "src/powershell/check-defender.ps1",
       "src/powershell/enable-rdp.ps1",
-      "src/powershell/extend-volume.ps1",
-      "src/powershell/install-chocolatey.ps1"
+      "src/powershell/extend-volume.ps1"
+      // "src/powershell/install-chocolatey.ps1"
     ]
   }
 
