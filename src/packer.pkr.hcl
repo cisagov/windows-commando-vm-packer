@@ -150,14 +150,18 @@ build {
   }
 
   provisioner "powershell" {
+    inline = ["& 'C:/Program Files/Amazon/EC2Launch/ec2launch' run"]
+  }
+
+  provisioner "powershell" {
     # Wait 30 seconds before executing the next provisioner.
     # This gives a grace period between restarting Windows and running the next provisioner.
     pause_before = "30s"
     scripts = [
       "src/powershell/check-defender.ps1",
       "src/powershell/enable-rdp.ps1",
-      "src/powershell/extend-volume.ps1"
-      // "src/powershell/install-chocolatey.ps1"
+      "src/powershell/extend-volume.ps1",
+      "src/powershell/install-chocolatey.ps1"
     ]
   }
 
