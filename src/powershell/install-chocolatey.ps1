@@ -7,6 +7,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 iex "choco sources add --name fireeye --source https://www.myget.org/F/fireeye/api/v2 --priority 1"
 iex "choco feature enable --name allowGlobalConfirmation"
 iex "choco feature enable --name allowEmptyChecksums"
+Write-Output "[*] Chocolatey successfully configured to use FireEye's package repository"
 
 # Disable timeout settings to help with packages that take a long time to install
 & powercfg -change -monitor-timeout-ac 0 | Out-Null
@@ -17,6 +18,7 @@ iex "choco feature enable --name allowEmptyChecksums"
 & powercfg -change -standby-timeout-dc 0 | Out-Null
 & powercfg -change -hibernate-timeout-ac 0 | Out-Null
 & powercfg -change -hibernate-timeout-dc 0 | Out-Null
+Write-Output "[*] Timeout settings successfully disabled"
 
 # Install Microsoft C and C++ runtime libraries
 iex "choco upgrade --yes vcredist-all.flare"
