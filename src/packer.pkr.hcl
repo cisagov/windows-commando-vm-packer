@@ -151,7 +151,8 @@ build {
 
   provisioner "powershell" {
     inline = [
-      "& 'C:/Program Files/Amazon/EC2Launch/ec2launch' run"
+      "& 'C:/Program Files/Amazon/EC2Launch/ec2launch' run",
+      "Get-Disk"
     ]
   }
 
