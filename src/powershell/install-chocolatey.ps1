@@ -22,4 +22,6 @@ Write-Output "[*] Timeout settings successfully disabled"
 
 # Install Microsoft C and C++ runtime libraries
 iex "choco upgrade --yes vcredist-all.flare"
+
+Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 refreshenv
