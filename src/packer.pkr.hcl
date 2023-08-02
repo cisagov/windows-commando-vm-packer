@@ -66,12 +66,12 @@ variable "winrm_username" {
 
 data "amazon-ami" "windows_server_2022" {
   filters = {
-    name                = "Windows_Server-2022-English-Full-Base-*"
+    name                = "windows-server-2022-20230426163556-x86_64-ebs"
     root-device-type    = "ebs"
     virtualization-type = "hvm"
   }
   most_recent = true
-  owners      = ["amazon"]
+  owners      = ["831294334465"]
   region      = var.build_region
 }
 
@@ -136,34 +136,34 @@ build {
     "source.amazon-ebs.windows"
   ]
 
-  provisioner "powershell" {
-    # Wait 10 seconds before executing the disable-defender.ps1 powershell script.
-    # This gives a small grace period between booting up for the first time and running the first provisioner.
-    pause_before = "10s"
-    scripts      = ["src/powershell/disable-defender.ps1"]
-  }
+  // provisioner "powershell" {
+  //   # Wait 10 seconds before executing the disable-defender.ps1 powershell script.
+  //   # This gives a small grace period between booting up for the first time and running the first provisioner.
+  //   pause_before = "10s"
+  //   scripts      = ["src/powershell/disable-defender.ps1"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    inline = [
-      "& 'C:/Program Files/Amazon/EC2Launch/ec2launch' run",
-      "Get-Disk"
-    ]
-  }
+  // provisioner "powershell" {
+  //   inline = [
+  //     "& 'C:/Program Files/Amazon/EC2Launch/ec2launch' run",
+  //     "Get-Disk"
+  //   ]
+  // }
 
   provisioner "powershell" {
     # Wait 30 seconds before executing the next provisioner.
     # This gives a grace period between restarting Windows and running the next provisioner.
     pause_before = "30s"
     scripts = [
-      "src/powershell/check-defender.ps1",
+      // "src/powershell/check-defender.ps1",
       "src/powershell/enable-rdp.ps1",
-      "src/powershell/extend-volume.ps1",
+      // "src/powershell/extend-volume.ps1",
       "src/powershell/install-chocolatey.ps1"
     ]
   }
