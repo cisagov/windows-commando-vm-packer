@@ -149,13 +149,6 @@ build {
   //   restart_timeout = "30m"
   // }
 
-  // provisioner "powershell" {
-  //   inline = [
-  //     "& 'C:/Program Files/Amazon/EC2Launch/ec2launch' run",
-  //     "Get-Disk"
-  //   ]
-  // }
-
   provisioner "powershell" {
     # Wait 30 seconds before executing the next provisioner.
     # This gives a grace period between restarting Windows and running the next provisioner.

@@ -1,5 +1,13 @@
 Write-Output "[ ] Attempting to extend C drive volume"
 
+Stop-Service -Name ShellHWDetection
+Get-Disk | Where PartitionStyle -eq 'raw' | Initialize-Disk -PartitionStyle MBR -PassThru | New-Partition -AssignDriveLetter -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "EBS Volume" -Confirm:$false
+Start-Service -Name ShellHWDetection
+
+$orignalDDriveVolumeSizeGB = $(Get-Volume -DriveLetter C).Size / 1GB
+
+Write-Output "D drive volume size: $orignalDDriveVolumeSizeGB"
+
 # Scan the disk to detect the current volume size
 "rescan" | diskpart
 
