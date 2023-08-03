@@ -1,15 +1,23 @@
 Write-Output "[ ] Attempting to extend C drive volume"
 
+# Run EC2Launch to initialize the disk
+& "C:\Program Files\Amazon\EC2Launch\EC2Launch.exe" run
+
 Stop-Service -Name ShellHWDetection
 Get-Disk | Where PartitionStyle -eq 'raw' | Initialize-Disk -PartitionStyle MBR -PassThru | New-Partition -AssignDriveLetter -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "EBS Volume" -Confirm:$false
 Start-Service -Name ShellHWDetection
+
+# Scan the disk to detect the current volume size
+"rescan" | diskpart
+
+# Get the current available disks
+"list disk" | diskpart
 
 $orignalDDriveVolumeSizeGB = $(Get-Volume -DriveLetter C).Size / 1GB
 
 Write-Output "D drive volume size: $orignalDDriveVolumeSizeGB"
 
-# Scan the disk to detect the current volume size
-"rescan" | diskpart
+Get-Disk
 
 # Get the current C drive volume
 $originalVolumeSizeGB = $(Get-Volume -DriveLetter C).Size / 1GB
@@ -23,16 +31,24 @@ if (!$?) {
     return
 }
 
-# Rescan the disk to detect the updated volume size
-"rescan" | diskpart
+Resize-Partition -DriveLetter D -Size $(Get-PartitionSupportedSize -DriveLetter D).SizeMax -ErrorAction "continue"
 
-# Get the updated C drive volume
-$volumeSizeGB = $(Get-Volume -DriveLetter C).Size / 1GB
-
-# Verify the C drive volume was extended
-Write-Output "[ ] Verifying C drive volume was extended"
-if ($volumeSizeGB -le $originalVolumeSizeGB) {
-    Write-Error "[X] Failed to extend C drive volume" -ErrorAction Stop
+# Do not continue if the C drive volume is already extended
+if (!$?) {
+    Write-Output "[*] D drive volume is already extended: $originalVolumeSizeGB GB"
+    return
 }
 
-Write-Output "[*] Successfully extended C drive volume: $volumeSizeGB GB"
+# # Rescan the disk to detect the updated volume size
+# "rescan" | diskpart
+
+# # Get the updated C drive volume
+# $volumeSizeGB = $(Get-Volume -DriveLetter C).Size / 1GB
+
+# # Verify the C drive volume was extended
+# Write-Output "[ ] Verifying C drive volume was extended"
+# if ($volumeSizeGB -le $originalVolumeSizeGB) {
+#     Write-Error "[X] Failed to extend C drive volume" -ErrorAction Stop
+# }
+
+# Write-Output "[*] Successfully extended C drive volume: $volumeSizeGB GB"

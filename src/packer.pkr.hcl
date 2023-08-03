@@ -155,58 +155,58 @@ build {
     pause_before = "30s"
     scripts = [
       // "src/powershell/check-defender.ps1",
-      "src/powershell/enable-rdp.ps1",
+      // "src/powershell/enable-rdp.ps1",
       "src/powershell/extend-volume.ps1",
-      "src/powershell/install-chocolatey.ps1"
+      // "src/powershell/install-chocolatey.ps1"
     ]
   }
 
-  provisioner "powershell" {
-    # Create "packages" directory before uploading them in the next provisioner.
-    inline = ["mkdir C:\\packages"]
-  }
+  // provisioner "powershell" {
+  //   # Create "packages" directory before uploading them in the next provisioner.
+  //   inline = ["mkdir C:\\packages"]
+  // }
 
-  provisioner "file" {
-    # Upload package lists to the "packages" directory.
-    source      = "src/packages/"
-    destination = "C:\\packages"
-  }
+  // provisioner "file" {
+  //   # Upload package lists to the "packages" directory.
+  //   source      = "src/packages/"
+  //   destination = "C:\\packages"
+  // }
 
-  provisioner "powershell" {
-    # Install general packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=general"]
-  }
+  // provisioner "powershell" {
+  //   # Install general packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=general"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install Docker packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=docker"]
-  }
+  // provisioner "powershell" {
+  //   # Install Docker packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=docker"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
-  provisioner "powershell" {
-    # Install evasion packages
-    script           = "src/powershell/install-category.ps1"
-    environment_vars = ["CATEGORY=evasion"]
-  }
+  // provisioner "powershell" {
+  //   # Install evasion packages
+  //   script           = "src/powershell/install-category.ps1"
+  //   environment_vars = ["CATEGORY=evasion"]
+  // }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
-  }
+  // provisioner "windows-restart" {
+  //   # Wait a maximum of 30 minutes for Windows to restart.
+  //   # The build will fail if the restart process takes longer than 30 minutes.
+  //   restart_timeout = "30m"
+  // }
 
   // provisioner "powershell" {
   //   # Install exploitation packages
