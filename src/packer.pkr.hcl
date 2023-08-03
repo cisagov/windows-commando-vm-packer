@@ -209,11 +209,11 @@ build {
     environment_vars = ["CATEGORY=evasion"]
   }
 
-  // provisioner "windows-restart" {
-  //   # Wait a maximum of 30 minutes for Windows to restart.
-  //   # The build will fail if the restart process takes longer than 30 minutes.
-  //   restart_timeout = "30m"
-  // }
+  provisioner "windows-restart" {
+    # Wait a maximum of 30 minutes for Windows to restart.
+    # The build will fail if the restart process takes longer than 30 minutes.
+    restart_timeout = "30m"
+  }
 
   // provisioner "powershell" {
   //   # Install exploitation packages
