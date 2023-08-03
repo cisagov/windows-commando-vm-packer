@@ -163,7 +163,7 @@ build {
     scripts = [
       // "src/powershell/check-defender.ps1",
       "src/powershell/enable-rdp.ps1",
-      // "src/powershell/extend-volume.ps1",
+      "src/powershell/extend-volume.ps1",
       "src/powershell/install-chocolatey.ps1"
     ]
   }
@@ -191,23 +191,23 @@ build {
     restart_timeout = "30m"
   }
 
-  // provisioner "powershell" {
-  //   # Install Docker packages
-  //   script           = "src/powershell/install-category.ps1"
-  //   environment_vars = ["CATEGORY=docker"]
-  // }
+  provisioner "powershell" {
+    # Install Docker packages
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=docker"]
+  }
 
-  // provisioner "windows-restart" {
-  //   # Wait a maximum of 30 minutes for Windows to restart.
-  //   # The build will fail if the restart process takes longer than 30 minutes.
-  //   restart_timeout = "30m"
-  // }
+  provisioner "windows-restart" {
+    # Wait a maximum of 30 minutes for Windows to restart.
+    # The build will fail if the restart process takes longer than 30 minutes.
+    restart_timeout = "30m"
+  }
 
-  // provisioner "powershell" {
-  //   # Install evasion packages
-  //   script           = "src/powershell/install-category.ps1"
-  //   environment_vars = ["CATEGORY=evasion"]
-  // }
+  provisioner "powershell" {
+    # Install evasion packages
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=evasion"]
+  }
 
   // provisioner "windows-restart" {
   //   # Wait a maximum of 30 minutes for Windows to restart.
