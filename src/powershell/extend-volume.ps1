@@ -2,6 +2,7 @@ Write-Output "[ ] Attempting to extend C drive volume"
 
 # Run EC2Launch to initialize the disk
 & "C:\Program Files\Amazon\EC2Launch\EC2Launch.exe" run
+& "C:\Program Files\Amazon\EC2Launch\EC2Launch.exe" list-volumes
 
 Stop-Service -Name ShellHWDetection
 Get-Disk | Where PartitionStyle -eq 'raw' | Initialize-Disk -PartitionStyle MBR -PassThru | New-Partition -AssignDriveLetter -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "EBS Volume" -Confirm:$false
