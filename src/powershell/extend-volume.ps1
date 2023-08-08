@@ -11,15 +11,15 @@ Start-Service -Name ShellHWDetection
 # Get the current available disks
 "list disk" | diskpart
 
-$disks = Get-Disk  
-foreach ($disk in $disks)  
-{  
-    $partitions = Get-Partition -DiskNumber $disk.Number  
-    foreach ($partition in $partitions)  
-    {  
-        Write-Output "LUN Number: $($partition.Number)"  
-        Write-Output "Drive Letter: $($partition.DriveLetter)"  
-    }  
+$disks = Get-Disk
+foreach ($disk in $disks)
+{
+    $partitions = Get-Partition -DiskNumber $disk.Number
+    foreach ($partition in $partitions)
+    {
+        Write-Output "LUN Number: $($partition.Number)"
+        Write-Output "Drive Letter: $($partition.DriveLetter)"
+    }
 }
 
 # Get the current C drive volume
