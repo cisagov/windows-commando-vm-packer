@@ -23,5 +23,10 @@ Write-Output "[*] Timeout settings successfully disabled"
 # Install Microsoft C and C++ runtime libraries
 iex "choco upgrade --yes vcredist-all.flare"
 
+# Set Chocolatey install directory to D drive
+setx ChocolateyInstall D:\Chocolatey /M
+SET "ChocolateyInstall=D:\Chocolatey"
+
+# Install Chocolatey profile
 Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 refreshenv

@@ -1,4 +1,4 @@
-Write-Output "[ ] Attempting to extend C drive volume"
+Write-Output "[ ] Attempting to initialize D drive volume"
 
 # Initialize Raw Disk from EBS Volume and Assign it to Drive letter D
 Stop-Service -Name ShellHWDetection
