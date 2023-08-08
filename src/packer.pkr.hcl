@@ -157,26 +157,26 @@ build {
       // "src/powershell/check-defender.ps1",
       // "src/powershell/enable-rdp.ps1",
       "src/powershell/extend-volume.ps1",
-      // "src/powershell/install-chocolatey.ps1"
+      "src/powershell/install-chocolatey.ps1"
     ]
   }
 
-  // provisioner "powershell" {
-  //   # Create "packages" directory before uploading them in the next provisioner.
-  //   inline = ["mkdir C:\\packages"]
-  // }
+  provisioner "powershell" {
+    # Create "packages" directory before uploading them in the next provisioner.
+    inline = ["mkdir D:\\packages"]
+  }
 
-  // provisioner "file" {
-  //   # Upload package lists to the "packages" directory.
-  //   source      = "src/packages/"
-  //   destination = "C:\\packages"
-  // }
+  provisioner "file" {
+    # Upload package lists to the "packages" directory.
+    source      = "src/packages/"
+    destination = "D:\\packages"
+  }
 
-  // provisioner "powershell" {
-  //   # Install general packages
-  //   script           = "src/powershell/install-category.ps1"
-  //   environment_vars = ["CATEGORY=general"]
-  // }
+  provisioner "powershell" {
+    # Install general packages
+    script           = "src/powershell/install-category.ps1"
+    environment_vars = ["CATEGORY=general"]
+  }
 
   // provisioner "windows-restart" {
   //   # Wait a maximum of 30 minutes for Windows to restart.
