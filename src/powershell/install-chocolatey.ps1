@@ -10,14 +10,15 @@ iex "choco feature enable --name allowEmptyChecksums"
 Write-Output "[*] Chocolatey successfully configured to use FireEye's package repository"
 
 # Disable timeout settings to help with packages that take a long time to install
-& powercfg -change -monitor-timeout-ac 0 | Out-Null
-& powercfg -change -monitor-timeout-dc 0 | Out-Null
 & powercfg -change -disk-timeout-ac 0 | Out-Null
 & powercfg -change -disk-timeout-dc 0 | Out-Null
-& powercfg -change -standby-timeout-ac 0 | Out-Null
-& powercfg -change -standby-timeout-dc 0 | Out-Null
 & powercfg -change -hibernate-timeout-ac 0 | Out-Null
 & powercfg -change -hibernate-timeout-dc 0 | Out-Null
+& powercfg -change -monitor-timeout-ac 0 | Out-Null
+& powercfg -change -monitor-timeout-dc 0 | Out-Null
+& powercfg -change -standby-timeout-ac 0 | Out-Null
+& powercfg -change -standby-timeout-dc 0 | Out-Null
+
 Write-Output "[*] Timeout settings successfully disabled"
 
 # Install Microsoft C and C++ runtime libraries
