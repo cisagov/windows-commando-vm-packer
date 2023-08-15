@@ -42,7 +42,7 @@ Write-Output "[*] Firewall rule successfully verified: $name"
 # Set value to option 2:
 # "Configure Group Policy setting to not require the user’s consent"
 $name = "Shadow"
-$path = 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp'
+$path = "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp"
 Write-Output "[ ] Configuring setting: $name"
 Set-ItemProperty -Path $path -Name $name -Value "2"
 if ($(Get-ItemProperty -Path $path -Name $name).Shadow -ne 2) {
@@ -66,7 +66,7 @@ Write-Output "[*] Setting successfully verified: $name"
 # Set value to option 2:
 # "Allow Full Control without user’s permission"
 $name = "Terminal Services"
-$path = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
+$path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services"
 Write-Output "[ ] Configuring setting: $name"
 Set-ItemProperty -Path $path -Name $name -Value "2"
 if ($(Get-ItemProperty -Path $path -Name $name).$name -ne 2) {
