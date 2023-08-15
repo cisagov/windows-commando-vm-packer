@@ -5,7 +5,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
 
 # Download and execute the Chocolatey install script
-iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+iex ((New-Object System.Net.WebClient).DownloadString("https://community.chocolatey.org/install.ps1"))
 
 # Configure Chocolatey to use FireEye's package repository
 iex "choco sources add --name fireeye --source https://www.myget.org/F/fireeye/api/v2 --priority 1"
