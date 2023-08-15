@@ -169,14 +169,14 @@ build {
 
   provisioner "file" {
     # Upload package lists to the "packages" directory.
-    source      = "src/packages/"
     destination = "D:\\packages"
+    source      = "src/packages/"
   }
 
   provisioner "powershell" {
     # Install general packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=general"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -187,8 +187,8 @@ build {
 
   provisioner "powershell" {
     # Install Docker packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=docker"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -199,8 +199,8 @@ build {
 
   provisioner "powershell" {
     # Install evasion packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=evasion"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -211,8 +211,8 @@ build {
 
   provisioner "powershell" {
     # Install exploitation packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=exploitation"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -235,8 +235,8 @@ build {
 
   provisioner "powershell" {
     # Install Kali packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=kali"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -247,8 +247,8 @@ build {
 
   provisioner "powershell" {
     # Install networking packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=networking"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -259,8 +259,8 @@ build {
 
   provisioner "powershell" {
     # Install password packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=passwords"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -271,8 +271,8 @@ build {
 
   provisioner "powershell" {
     # Install reverse engineering packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=reverse-engineering"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -283,8 +283,8 @@ build {
 
   provisioner "powershell" {
     # Install utility packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=utilities"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -295,8 +295,8 @@ build {
 
   provisioner "powershell" {
     # Install vulnerability analysis packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=vulnerability-analysis"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -307,8 +307,8 @@ build {
 
   provisioner "powershell" {
     # Install web application packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=web-applications"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -319,8 +319,8 @@ build {
 
   provisioner "powershell" {
     # Install wordlist packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=wordlists"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
