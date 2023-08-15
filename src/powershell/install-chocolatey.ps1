@@ -2,6 +2,7 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
 # Enable TLS 1.2 support for .NET framework using the security protocal type 3072
+# See https://learn.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=net-5.0#fields
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
 
 # Download and execute the Chocolatey install script
