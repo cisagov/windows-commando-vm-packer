@@ -215,8 +215,8 @@ build {
 
   provisioner "powershell" {
     # Install information gathering packages
-    script           = "src/powershell/install-category.ps1"
     environment_vars = ["CATEGORY=information-gathering"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
