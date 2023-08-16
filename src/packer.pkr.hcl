@@ -75,7 +75,6 @@ data "amazon-ami" "windows_server_2022" {
   region      = var.build_region
 }
 
-
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "amazon-ebs" "windows" {
