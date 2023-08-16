@@ -16,6 +16,12 @@ variable "build_region_kms" {
   type        = string
 }
 
+variable "drive_letter" {
+  default     = "D"
+  description = "The drive letter to assign to the EBS volume."
+  type        = string
+}
+
 variable "is_prerelease" {
   default     = false
   description = "The pre-release status to use for the tags applied to the created AMI."
@@ -145,10 +151,18 @@ build {
   provisioner "powershell" {
     # Wait 30 seconds before executing the next provisioner.
     # This gives a grace period between restarting Windows and running the next provisioner.
+    # Check and disable Windows Defender.
     pause_before = "30s"
     scripts = [
       "src/powershell/check-defender.ps1",
       "src/powershell/enable-rdp.ps1",
+    ]
+  }
+
+  provisioner "powershell" {
+    # Initialize EBS volume disk, assign a drive letter and install chocolatey.
+    environment_vars = ["DriveLetter=${var.drive_letter}"]
+    scripts = [
       "src/powershell/initialize-volume.ps1",
       "src/powershell/install-chocolatey.ps1"
     ]
@@ -156,12 +170,12 @@ build {
 
   provisioner "powershell" {
     # Create "packages" directory before uploading them in the next provisioner.
-    inline = ["mkdir D:\\packages"]
+    inline = ["mkdir ${var.drive_letter}:\\packages"]
   }
 
   provisioner "file" {
     # Upload package lists to the "packages" directory.
-    destination = "D:\\packages"
+    destination = "${var.drive_letter}:\\packages"
     source      = "src/packages/"
   }
 

@@ -1,3 +1,8 @@
+# Set Chocolatey install directory to the assigned drive letter
+$driveLetter = $env:DriveLetter
+setx ChocolateyInstall ${$driveLetter}:\Chocolatey /M
+SET "ChocolateyInstall=$driveLetter:\Chocolatey"
+
 # Download and execute Chocolatey install script
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
@@ -28,10 +33,6 @@ Write-Output "[*] Timeout settings successfully disabled"
 
 # Install Microsoft C and C++ runtime libraries
 iex "choco upgrade --yes vcredist-all.flare"
-
-# Set Chocolatey install directory to D drive
-setx ChocolateyInstall D:\Chocolatey /M
-SET "ChocolateyInstall=D:\Chocolatey"
 
 # Install Chocolatey profile
 Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
