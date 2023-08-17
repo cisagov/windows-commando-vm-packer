@@ -160,7 +160,10 @@ build {
   }
 
   provisioner "powershell" {
-    # Initialize EBS volume disk, assign a drive letter and install chocolatey.
+    # Initialize EBS volume disk and assign a drive letter and install chocolatey.
+    # Note: The base Windows image's C drive is set to 30GB. Additional storage is
+    # needed to install all required packages. EBS volume disk can not be allocated
+    # to the C drive at build time. A different drive letter must be assigned.
     environment_vars = ["DriveLetter=${var.drive_letter}"]
     scripts = [
       "src/powershell/initialize-volume.ps1",
