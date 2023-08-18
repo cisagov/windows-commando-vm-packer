@@ -1,4 +1,4 @@
-$category = $env:CATEGORY
+$category = $env:Category
 $driveLetter = $env:DriveLetter
 $packagesDir = $env:PackagesDir
 Write-Output "Installing packages for category ${category} in ${driveLetter}:\\${packagesDir}"

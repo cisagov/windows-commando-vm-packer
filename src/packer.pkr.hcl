@@ -190,7 +190,7 @@ build {
 
   provisioner "powershell" {
     # Install general packages
-    environment_vars = ["CATEGORY=general", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
+    environment_vars = ["Category=general", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
   }
 
@@ -202,7 +202,7 @@ build {
 
   provisioner "powershell" {
     # Install Docker packages
-    environment_vars = ["CATEGORY=docker", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
+    environment_vars = ["Category=docker", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
   }
 
@@ -215,7 +215,7 @@ build {
   provisioner "powershell" {
     # Install evasion packages
     environment_vars = [
-      "CATEGORY=evasion",
+      "Category=evasion",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -231,7 +231,7 @@ build {
   provisioner "powershell" {
     # Install exploitation packages
     environment_vars = [
-      "CATEGORY=exploitation",
+      "Category=exploitation",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -247,7 +247,7 @@ build {
   provisioner "powershell" {
     # Install information gathering packages
     environment_vars = [
-      "CATEGORY=information-gathering",
+      "Category=information-gathering",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -263,7 +263,7 @@ build {
   provisioner "powershell" {
     # Install Kali packages
     environment_vars = [
-      "CATEGORY=kali",
+      "Category=kali",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -279,7 +279,7 @@ build {
   provisioner "powershell" {
     # Install networking packages
     environment_vars = [
-      "CATEGORY=networking",
+      "Category=networking",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -295,7 +295,7 @@ build {
   provisioner "powershell" {
     # Install password packages
     environment_vars = [
-      "CATEGORY=passwords",
+      "Category=passwords",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -311,7 +311,7 @@ build {
   provisioner "powershell" {
     # Install reverse engineering packages
     environment_vars = [
-      "CATEGORY=reverse-engineering",
+      "Category=reverse-engineering",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -327,7 +327,7 @@ build {
   provisioner "powershell" {
     # Install utility packages
     environment_vars = [
-      "CATEGORY=utilities",
+      "Category=utilities",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -343,7 +343,7 @@ build {
   provisioner "powershell" {
     # Install vulnerability analysis packages
     environment_vars = [
-      "CATEGORY=vulnerability-analysis",
+      "Category=vulnerability-analysis",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -359,7 +359,7 @@ build {
   provisioner "powershell" {
     # Install web application packages
     environment_vars = [
-      "CATEGORY=web-applications",
+      "Category=web-applications",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
@@ -375,7 +375,7 @@ build {
   provisioner "powershell" {
     # Install wordlist packages
     environment_vars = [
-      "CATEGORY=wordlists",
+      "Category=wordlists",
       "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
