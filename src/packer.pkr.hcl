@@ -46,6 +46,12 @@ variable "release_url" {
   type        = string
 }
 
+variable "packages_dir" {
+  default     = "packages"
+  description = "The directory where the list of packages are stored."
+  type        = string
+}
+
 variable "skip_create_ami" {
   default     = false
   description = "Indicate if Packer should not create the AMI."
@@ -173,18 +179,18 @@ build {
 
   provisioner "powershell" {
     # Create "packages" directory before uploading them in the next provisioner.
-    inline = ["mkdir ${var.drive_letter}:\\packages"]
+    inline = ["mkdir ${var.drive_letter}:\\${var.packages_dir}"]
   }
 
   provisioner "file" {
     # Upload package lists to the "packages" directory.
-    destination = "${var.drive_letter}:\\packages"
-    source      = "src/packages/"
+    destination = "${var.drive_letter}:\\${var.packages_dir}"
+    source      = "src/${var.packages_dir}/"
   }
 
   provisioner "powershell" {
     # Install general packages
-    environment_vars = ["CATEGORY=general", "DriveLetter=${var.drive_letter}"]
+    environment_vars = ["CATEGORY=general", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
   }
 
@@ -196,7 +202,7 @@ build {
 
   provisioner "powershell" {
     # Install Docker packages
-    environment_vars = ["CATEGORY=docker", "DriveLetter=${var.drive_letter}"]
+    environment_vars = ["CATEGORY=docker", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
   }
 
@@ -208,8 +214,12 @@ build {
 
   provisioner "powershell" {
     # Install evasion packages
-    environment_vars = ["CATEGORY=evasion", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=evasion",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -220,8 +230,12 @@ build {
 
   provisioner "powershell" {
     # Install exploitation packages
-    environment_vars = ["CATEGORY=exploitation", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=exploitation",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -232,8 +246,12 @@ build {
 
   provisioner "powershell" {
     # Install information gathering packages
-    environment_vars = ["CATEGORY=information-gathering", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=information-gathering",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -244,8 +262,12 @@ build {
 
   provisioner "powershell" {
     # Install Kali packages
-    environment_vars = ["CATEGORY=kali", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=kali",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -256,8 +278,12 @@ build {
 
   provisioner "powershell" {
     # Install networking packages
-    environment_vars = ["CATEGORY=networking", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=networking",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -268,8 +294,12 @@ build {
 
   provisioner "powershell" {
     # Install password packages
-    environment_vars = ["CATEGORY=passwords", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=passwords",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -280,8 +310,12 @@ build {
 
   provisioner "powershell" {
     # Install reverse engineering packages
-    environment_vars = ["CATEGORY=reverse-engineering", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=reverse-engineering",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -292,8 +326,12 @@ build {
 
   provisioner "powershell" {
     # Install utility packages
-    environment_vars = ["CATEGORY=utilities", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=utilities",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -304,8 +342,12 @@ build {
 
   provisioner "powershell" {
     # Install vulnerability analysis packages
-    environment_vars = ["CATEGORY=vulnerability-analysis", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=vulnerability-analysis",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -316,8 +358,12 @@ build {
 
   provisioner "powershell" {
     # Install web application packages
-    environment_vars = ["CATEGORY=web-applications", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=web-applications",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {
@@ -328,8 +374,12 @@ build {
 
   provisioner "powershell" {
     # Install wordlist packages
-    environment_vars = ["CATEGORY=wordlists", "DriveLetter=${var.drive_letter}"]
-    script           = "src/powershell/install-category.ps1"
+    environment_vars = [
+      "CATEGORY=wordlists",
+      "DriveLetter=${var.drive_letter}",
+      "PackagesDir=${var.packages_dir}"
+    ]
+    script = "src/powershell/install-category.ps1"
   }
 
   provisioner "windows-restart" {

@@ -1,16 +1,16 @@
 $category = $env:CATEGORY
 $driveLetter = $env:DriveLetter
-Write-Output "Set write to $driveLetter drive"
-Write-Output "Installing packages for category $category"
+$packagesDir = $env:PackagesDir
+Write-Output "Installing packages for category $category in $driveLetter:\\$packagesDir"
 
 # Set Chocolatey install directory to the assigned drive letter
 # This must be re-set inbetween Windows restarts
 setx ChocolateyInstall ${driveLetter}:\Chocolatey /M
 SET "ChocolateyInstall=${driveLetter}:\Chocolatey"
 
-[xml]$xml = Get-Content "${driveLetter}:\\packages\\$category.config"
+[xml]$xml = Get-Content "${driveLetter}:\\$packagesDir\\$category.config"
 
-$xml.SelectNodes("//packages/package") | ForEach-Object {
+$xml.SelectNodes("//$packagesDir/package") | ForEach-Object {
     $packageID = $_.id
     Write-Output "### current package: $packageID ####################################################"
     choco upgrade $packageID --yes --no-progress
