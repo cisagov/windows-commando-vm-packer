@@ -14,7 +14,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString("https://community.chocolatey.org/install.ps1"))
 
 # Configure Chocolatey to use Mandiant's VM-Packages repository
-iex "choco sources add --name vm-packages --source '$desktopPath;.;https://www.myget.org/F/vm-packages/api/v2;https://myget.org/F/vm-packages/api/v2' --priority 1"
+iex "choco sources add --name vm-packages --source 'https://www.myget.org/F/vm-packages/api/v2;https://myget.org/F/vm-packages/api/v2' --priority 1"
 iex "choco feature enable --name allowGlobalConfirmation"
 iex "choco feature enable --name allowEmptyChecksums"
 Write-Output "[*] Chocolatey successfully configured to use Mandiant VM-Packages repository"
