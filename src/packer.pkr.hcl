@@ -188,16 +188,16 @@ build {
     source      = "src/${var.packages_dir}/"
   }
 
-  provisioner "powershell" {
-    # Install general packages
-    environment_vars = ["Category=general", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
-    script           = "src/powershell/install-category.ps1"
-  }
-
   provisioner "windows-restart" {
     # Wait a maximum of 5 minutes for Windows to restart.
     # The build will fail if the restart process takes longer than 5 minutes.
     restart_timeout = "5m"
+  }
+
+  provisioner "powershell" {
+    # Install general packages
+    environment_vars = ["Category=general", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
+    script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "powershell" {
@@ -206,181 +206,181 @@ build {
     script           = "src/powershell/install-category.ps1"
   }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install evasion packages
-    environment_vars = [
-      "Category=evasion",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install evasion packages
+  #   environment_vars = [
+  #     "Category=evasion",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install exploitation packages
-    environment_vars = [
-      "Category=exploitation",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install exploitation packages
+  #   environment_vars = [
+  #     "Category=exploitation",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install information gathering packages
-    environment_vars = [
-      "Category=information-gathering",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install information gathering packages
+  #   environment_vars = [
+  #     "Category=information-gathering",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install Kali packages
-    environment_vars = [
-      "Category=kali",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install Kali packages
+  #   environment_vars = [
+  #     "Category=kali",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install networking packages
-    environment_vars = [
-      "Category=networking",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install networking packages
+  #   environment_vars = [
+  #     "Category=networking",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install password packages
-    environment_vars = [
-      "Category=passwords",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install password packages
+  #   environment_vars = [
+  #     "Category=passwords",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install reverse engineering packages
-    environment_vars = [
-      "Category=reverse-engineering",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install reverse engineering packages
+  #   environment_vars = [
+  #     "Category=reverse-engineering",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install utility packages
-    environment_vars = [
-      "Category=utilities",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install utility packages
+  #   environment_vars = [
+  #     "Category=utilities",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install vulnerability analysis packages
-    environment_vars = [
-      "Category=vulnerability-analysis",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install vulnerability analysis packages
+  #   environment_vars = [
+  #     "Category=vulnerability-analysis",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install web application packages
-    environment_vars = [
-      "Category=web-applications",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install web application packages
+  #   environment_vars = [
+  #     "Category=web-applications",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
-  }
+  # provisioner "windows-restart" {
+  #   # Wait a maximum of 5 minutes for Windows to restart.
+  #   # The build will fail if the restart process takes longer than 5 minutes.
+  #   restart_timeout = "5m"
+  # }
 
-  provisioner "powershell" {
-    # Install wordlist packages
-    environment_vars = [
-      "Category=wordlists",
-      "DriveLetter=${var.drive_letter}",
-      "PackagesDir=${var.packages_dir}"
-    ]
-    script = "src/powershell/install-category.ps1"
-  }
+  # provisioner "powershell" {
+  #   # Install wordlist packages
+  #   environment_vars = [
+  #     "Category=wordlists",
+  #     "DriveLetter=${var.drive_letter}",
+  #     "PackagesDir=${var.packages_dir}"
+  #   ]
+  #   script = "src/powershell/install-category.ps1"
+  # }
 
   provisioner "windows-restart" {
     # Wait a maximum of 5 minutes for Windows to restart.
