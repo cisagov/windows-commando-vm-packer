@@ -99,7 +99,7 @@ source "amazon-ebs" "windows" {
   kms_key_id                  = var.build_region_kms
   launch_block_device_mappings {
     delete_on_termination = true
-    device_name           = "/dev/xvda"
+    device_name           = "/dev/sda1"
     encrypted             = true
     no_device             = false
     volume_size           = 500
