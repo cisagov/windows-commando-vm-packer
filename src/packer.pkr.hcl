@@ -189,6 +189,12 @@ build {
     script           = "src/powershell/install-category.ps1"
   }
 
+  provisioner "windows-restart" {
+    # Wait a maximum of 5 minutes for Windows to restart.
+    # The build will fail if the restart process takes longer than 5 minutes.
+    restart_timeout = "5m"
+  }
+
   provisioner "powershell" {
     # Install Docker packages
     environment_vars = ["Category=docker", "PackagesDir=${var.packages_dir}"]
