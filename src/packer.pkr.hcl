@@ -16,12 +16,6 @@ variable "build_region_kms" {
   type        = string
 }
 
-variable "drive_letter" {
-  default     = "C"
-  description = "The drive letter to assign to the EBS volume."
-  type        = string
-}
-
 variable "is_prerelease" {
   default     = false
   description = "The pre-release status to use for the tags applied to the created AMI."
@@ -174,12 +168,12 @@ build {
 
   provisioner "powershell" {
     # Create "packages" directory before uploading them in the next provisioner.
-    inline = ["mkdir ${var.drive_letter}:\\${var.packages_dir}"]
+    inline = ["mkdir C:\\${var.packages_dir}"]
   }
 
   provisioner "file" {
     # Upload package lists to the "packages" directory.
-    destination = "${var.drive_letter}:\\${var.packages_dir}"
+    destination = "C:\\${var.packages_dir}"
     source      = "src/${var.packages_dir}/"
   }
 
@@ -191,13 +185,13 @@ build {
 
   provisioner "powershell" {
     # Install general packages
-    environment_vars = ["Category=general", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
+    environment_vars = ["Category=general", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
   }
 
   provisioner "powershell" {
     # Install Docker packages
-    environment_vars = ["Category=docker", "DriveLetter=${var.drive_letter}", "PackagesDir=${var.packages_dir}"]
+    environment_vars = ["Category=docker", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
   }
 
@@ -211,7 +205,6 @@ build {
     # Install networking packages
     environment_vars = [
       "Category=networking",
-      "DriveLetter=${var.drive_letter}",
       "PackagesDir=${var.packages_dir}"
     ]
     script = "src/powershell/install-category.ps1"
@@ -221,7 +214,6 @@ build {
   #   # Install evasion packages
   #   environment_vars = [
   #     "Category=evasion",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -237,7 +229,6 @@ build {
   #   # Install exploitation packages
   #   environment_vars = [
   #     "Category=exploitation",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -253,7 +244,6 @@ build {
   #   # Install information gathering packages
   #   environment_vars = [
   #     "Category=information-gathering",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -269,7 +259,6 @@ build {
   #   # Install Kali packages
   #   environment_vars = [
   #     "Category=kali",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -285,7 +274,6 @@ build {
   #   # Install password packages
   #   environment_vars = [
   #     "Category=passwords",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -301,7 +289,6 @@ build {
   #   # Install reverse engineering packages
   #   environment_vars = [
   #     "Category=reverse-engineering",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -317,7 +304,6 @@ build {
   #   # Install utility packages
   #   environment_vars = [
   #     "Category=utilities",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -333,7 +319,6 @@ build {
   #   # Install vulnerability analysis packages
   #   environment_vars = [
   #     "Category=vulnerability-analysis",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -349,7 +334,6 @@ build {
   #   # Install web application packages
   #   environment_vars = [
   #     "Category=web-applications",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
@@ -365,7 +349,6 @@ build {
   #   # Install wordlist packages
   #   environment_vars = [
   #     "Category=wordlists",
-  #     "DriveLetter=${var.drive_letter}",
   #     "PackagesDir=${var.packages_dir}"
   #   ]
   #   script = "src/powershell/install-category.ps1"
