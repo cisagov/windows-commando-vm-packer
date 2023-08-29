@@ -1,8 +1,3 @@
-# Set Chocolatey install directory to the assigned drive letter
-$driveLetter = $env:DriveLetter
-setx ChocolateyInstall ${driveLetter}:\Chocolatey /M
-SET "ChocolateyInstall=${driveLetter}:\Chocolatey"
-
 # Download and execute Chocolatey install script
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
