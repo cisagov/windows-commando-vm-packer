@@ -29,6 +29,14 @@ Write-Output "[*] Timeout settings successfully disabled"
 # Install Microsoft C and C++ runtime libraries
 iex "choco upgrade --yes vcredist-all"
 
+# Install Boxstarter
+Import-Module "${Env:ProgramData}\boxstarter\boxstarter.chocolatey\boxstarter.chocolatey.psd1" -Force
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1'))
+Get-Boxstarter -Force
+
+# Install common Flare VM packages
+choco install common.vm -y --force
+
 # Reference Chocolatey profile and refresh environment variables
 Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 refreshenv
