@@ -180,8 +180,15 @@ build {
   }
 
   provisioner "powershell" {
-    # Install general packages
+    # Install general packages.
     environment_vars = ["Category=general", "PackagesDir=${var.packages_dir}"]
+    script           = "src/powershell/install-category.ps1"
+  }
+
+  provisioner "powershell" {
+    # Install VM packages managed by Mandiant.
+    # See: https://github.com/mandiant/VM-Packages/tree/main/packages
+    environment_vars = ["Category=mandiant-vm", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
   }
 
