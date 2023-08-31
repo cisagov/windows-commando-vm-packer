@@ -7,7 +7,7 @@ Write-Output "Installing packages for category ${category} in C:\\${packagesDir}
 $xml.SelectNodes("//$packagesDir/package") | ForEach-Object {
     $packageID = $_.id
     Write-Output "### current package: $packageID ####################################################"
-    choco upgrade $packageID --yes --no-progress
+    Install-BoxstarterPackage -PackageName $packageID --yes --no-progress
 }
 
 exit 0

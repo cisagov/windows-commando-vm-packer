@@ -151,12 +151,14 @@ build {
   provisioner "powershell" {
     # Wait 30 seconds before executing the next provisioner.
     # This gives a grace period between restarting Windows and running the next provisioner.
-    # Check and disable Windows Defender.
+    # Disable Windows Defender and enable RDP.
+    # Install Chocolatey and Boxstarter.
     pause_before = "30s"
     scripts = [
       "src/powershell/check-defender.ps1",
       "src/powershell/enable-rdp.ps1",
-      "src/powershell/install-chocolatey.ps1"
+      "src/powershell/install-chocolatey.ps1",
+      "src/powershell/install-boxstarter.ps1"
     ]
   }
   provisioner "powershell" {
@@ -181,177 +183,6 @@ build {
     environment_vars = ["Category=general", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
   }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install Docker packages
-  #   environment_vars = ["Category=docker", "PackagesDir=${var.packages_dir}"]
-  #   script           = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install networking packages
-  #   environment_vars = [
-  #     "Category=networking",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install evasion packages
-  #   environment_vars = [
-  #     "Category=evasion",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install exploitation packages
-  #   environment_vars = [
-  #     "Category=exploitation",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install information gathering packages
-  #   environment_vars = [
-  #     "Category=information-gathering",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install Kali packages
-  #   environment_vars = [
-  #     "Category=kali",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install password packages
-  #   environment_vars = [
-  #     "Category=passwords",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install reverse engineering packages
-  #   environment_vars = [
-  #     "Category=reverse-engineering",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install utility packages
-  #   environment_vars = [
-  #     "Category=utilities",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install vulnerability analysis packages
-  #   environment_vars = [
-  #     "Category=vulnerability-analysis",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install web application packages
-  #   environment_vars = [
-  #     "Category=web-applications",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
-
-  # provisioner "windows-restart" {
-  #   # Wait a maximum of 5 minutes for Windows to restart.
-  #   # The build will fail if the restart process takes longer than 5 minutes.
-  #   restart_timeout = "5m"
-  # }
-
-  # provisioner "powershell" {
-  #   # Install wordlist packages
-  #   environment_vars = [
-  #     "Category=wordlists",
-  #     "PackagesDir=${var.packages_dir}"
-  #   ]
-  #   script = "src/powershell/install-category.ps1"
-  # }
 
   provisioner "windows-restart" {
     # Wait a maximum of 5 minutes for Windows to restart.
