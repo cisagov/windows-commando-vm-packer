@@ -1,18 +1,5 @@
 # Install and configure Boxstarter
 # See: https://boxstarter.org/
-Write-Output "[ ] Attempting to install and configure Boxstarter"
-
-try {
-    # Install Boxstarter
-    Install-Boxstarter
-    # Set Boxstarter configuration
-    Set-BoxstarterConfiguration
-    Write-Output "[*] Boxstarter successfully installed and configured"
-} catch {
-    Write-Error "[*] Failed to install and configure Boxstarter" -ErrorAction Stop
-}
-
-
 function Install-Boxstarter {
     Import-Module "${Env:ProgramData}\boxstarter\boxstarter.chocolatey\boxstarter.chocolatey.psd1" -Force
 
@@ -43,4 +30,16 @@ function Set-BoxstarterConfiguration {
     $global:VerbosePreference = "SilentlyContinue"
     Set-BoxstarterConfig -NugetSources "$desktopPath;.;https://www.myget.org/F/vm-packages/api/v2;https://chocolatey.org/api/v2"
     Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
+}
+
+Write-Output "[ ] Attempting to install and configure Boxstarter"
+
+try {
+    # Install Boxstarter
+    Install-Boxstarter
+    # Set Boxstarter configuration
+    Set-BoxstarterConfiguration
+    Write-Output "[*] Boxstarter successfully installed and configured"
+} catch {
+    Write-Error "[*] Failed to install and configure Boxstarter" -ErrorAction Stop
 }
