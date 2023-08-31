@@ -1,9 +1,6 @@
 # Install and configure Boxstarter
 # See: https://boxstarter.org/
 function Install-Boxstarter {
-    Import-Module "${Env:ProgramData}\boxstarter\boxstarter.chocolatey\boxstarter.chocolatey.psd1" -Force
-
-    # Install Boxstarter
     Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1'))
     Get-Boxstarter -Force
 
@@ -30,6 +27,7 @@ function Set-BoxstarterConfiguration {
     $global:VerbosePreference = "SilentlyContinue"
     Set-BoxstarterConfig -NugetSources "$desktopPath;.;https://www.myget.org/F/vm-packages/api/v2;https://chocolatey.org/api/v2"
     Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
+    Import-Module "${Env:ProgramData}\boxstarter\boxstarter.chocolatey\boxstarter.chocolatey.psd1" -Force
 }
 
 Write-Output "[ ] Attempting to install and configure Boxstarter"
