@@ -47,7 +47,7 @@ try {
 iex "choco upgrade --yes vcredist-all"
 
 # Install common Flare VM packages
-choco install common.vm -y --force
+choco install common.vm --yes --force
 
 # Reference Chocolatey profile and refresh environment variables
 Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
