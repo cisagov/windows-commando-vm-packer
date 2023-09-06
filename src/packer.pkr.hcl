@@ -149,10 +149,10 @@ build {
   }
 
   provisioner "powershell" {
-    # Wait 30 seconds before executing the next provisioner.
-    # This gives a grace period between restarting Windows and running the next provisioner.
-    # Disable Windows Defender, enable RDP and set wallpaper.
-    # Install Chocolatey and Boxstarter.
+    # Wait 30 seconds before executing the next provisioner. This gives a grace
+    # period between restarting Windows and running the next provisioner.
+    # Disable Windows Defender, enable and configure RDP, set the desktop
+    # wallpaper, and install Chocolatey and Boxstarter.
     pause_before = "30s"
     scripts = [
       "src/powershell/check-defender.ps1",
