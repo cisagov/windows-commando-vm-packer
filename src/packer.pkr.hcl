@@ -162,6 +162,7 @@ build {
       "src/powershell/install-boxstarter.ps1"
     ]
   }
+
   provisioner "powershell" {
     # Create "packages" directory before uploading them in the next provisioner.
     inline = ["mkdir C:\\${var.packages_dir}"]
