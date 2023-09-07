@@ -1,8 +1,7 @@
 # Install and configure Boxstarter
 # See: https://boxstarter.org/
 function Install-Boxstarter {
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1'))
-    Get-Boxstarter -Force
+    choco install Boxstarter --yes --force
 
     # Fix verbosity issues with Boxstarter v3
     # See: https://github.com/chocolatey/boxstarter/issues/501
