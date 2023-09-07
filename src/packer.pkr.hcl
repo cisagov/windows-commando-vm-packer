@@ -186,7 +186,7 @@ build {
   }
 
   provisioner "powershell" {
-    # Install VM packages managed by Mandiant.
+    # Install virtual machine packages managed by Mandiant.
     # See: https://github.com/mandiant/VM-Packages/tree/main/packages
     environment_vars = ["Category=mandiant-vm", "PackagesDir=${var.packages_dir}"]
     script           = "src/powershell/install-category.ps1"
