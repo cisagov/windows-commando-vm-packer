@@ -22,7 +22,7 @@ function Install-Boxstarter {
 function Set-BoxstarterConfiguration {
     $Boxstarter.RebootOk = (-not $noReboots.IsPresent)
     $Boxstarter.AutoLogin = $true
-    $Boxstarter.SuppressLogging = $True
+    $Boxstarter.SuppressLogging = $true
     $global:VerbosePreference = "SilentlyContinue"
     Set-BoxstarterConfig -NugetSources "$desktopPath;.;https://www.myget.org/F/vm-packages/api/v2;https://chocolatey.org/api/v2"
     Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
