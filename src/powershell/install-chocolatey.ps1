@@ -45,7 +45,7 @@ try {
 }
 
 # Install Microsoft C and C++ runtime libraries
-iex "choco upgrade --yes vcredist-all"
+choco upgrade --yes vcredist-all
 
 # Install common Flare VM packages
 choco install common.vm --yes --force
