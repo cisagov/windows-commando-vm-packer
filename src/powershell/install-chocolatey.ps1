@@ -36,7 +36,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
 
 try {
-    # Download and execute the Chocolatey install script
+    # Install and configure Chocolatey
     Install-Chocolatey
     Set-ChocoConfig
     Write-Output "[*] Chocolatey successfully installed and configured"
