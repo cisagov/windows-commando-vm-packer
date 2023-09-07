@@ -9,9 +9,9 @@ function Install-Chocolatey {
 function Set-ChocoConfig {
     # Configure Chocolatey to reference packages from Mandiant's VM-Packages repository
     # See: https://github.com/mandiant/VM-Packages
-    iex "choco sources add --name vm-packages --source 'https://www.myget.org/F/vm-packages/api/v2;https://myget.org/F/vm-packages/api/v2' --priority 1"
-    iex "choco feature enable --name allowGlobalConfirmation"
-    iex "choco feature enable --name allowEmptyChecksums"
+    choco sources add --name vm-packages --source 'https://www.myget.org/F/vm-packages/api/v2;https://myget.org/F/vm-packages/api/v2' --priority 1
+    choco feature enable --name allowGlobalConfirmation
+    choco feature enable --name allowEmptyChecksums
     Write-Output "[*] Chocolatey successfully configured to use Mandiant VM-Packages repository"
 
     # Disable timeout settings to help with packages that take a long time to install
