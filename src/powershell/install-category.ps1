@@ -6,8 +6,8 @@ Write-Output "Installing packages for category ${category} in C:\\${packagesDir}
 
 $xml.SelectNodes("//${packagesDir}/package") | ForEach-Object {
     $packageID = $_.id
-    Write-Output "### current package: $packageID ####################################################"
-    Install-BoxstarterPackage -PackageName $packageID
+    Write-Output "### current package: ${packageID} ####################################################"
+    Install-BoxstarterPackage -PackageName ${packageID}
 }
 
 exit 0
