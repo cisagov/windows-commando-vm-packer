@@ -7,16 +7,15 @@ $destinationImage = "C:\background.png"
 # of standard elements of the Windows user interface
 #
 # SystemParametersInfo params:
-#
 # uAction  - set to 20, which is an identifier for setting the desktop wallpaper.
 #
 # The following parameters' purpose depends on the uAction parameter being set:
-#
 # uParam   - Must be set to 0 when setting the desktop wallpaper.
 # lpvParam - Used to set the image path when setting the desktop wallpaper.
 # fuWinIni - Set to 3 to indicate that the user profile is to be updated.
 #
-# For more information, see: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-systemparametersinfoa
+# For more information, see:
+# https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-systemparametersinfoa
 $setWallpaperSrc = @'
 using System.Runtime.InteropServices;
 namespace Win32{
