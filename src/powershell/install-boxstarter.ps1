@@ -14,12 +14,13 @@ function Set-BoxstarterConfiguration {
     # Add Chocolatey and Mandiant VM-Packages repositories as Boxstarter sources
     Set-BoxstarterConfig -NugetSources "$desktopPath;.;https://www.myget.org/F/vm-packages/api/v2;https://chocolatey.org/api/v2"
 
-    # Set Windows Explorer options
-    # See: https://boxstarter.org/winconfig#set-windowsexploreroptions
-    Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
-
     # Import Boxstarter Chocolatey module to enable Chocolatey commands
     Import-Module "${Env:ProgramData}\boxstarter\boxstarter.chocolatey\boxstarter.chocolatey.psd1" -Force
+}
+
+function Set-BoxstarterWindowsExplorerOptions {
+    # See: https://boxstarter.org/winconfig#set-windowsexploreroptions
+    Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
 }
 
 Write-Output "[ ] Attempting to install and configure Boxstarter"
@@ -29,6 +30,9 @@ try {
     Install-Boxstarter
     # Set Boxstarter configuration
     Set-BoxstarterConfiguration
+    # Set Windows Explorer options
+    Set-BoxstarterWindowsExplorerOptions
+
     Write-Output "[*] Boxstarter successfully installed and configured"
 } catch {
     Write-Error "[*] Failed to install and configure Boxstarter" -ErrorAction Stop
