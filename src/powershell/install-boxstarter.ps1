@@ -34,7 +34,7 @@ try {
     # Set Boxstarter configuration
     Set-BoxstarterConfiguration
     # Set Windows Explorer options
-    Set-BoxstarterWindowsExplorerOptions
+    Configure-Windows-Explorer
 
     Write-Output "[*] Boxstarter successfully installed and configured"
 } catch {
