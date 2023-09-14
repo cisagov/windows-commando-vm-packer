@@ -18,7 +18,10 @@ function Set-BoxstarterConfiguration {
     Import-Module "${Env:ProgramData}\boxstarter\boxstarter.chocolatey\boxstarter.chocolatey.psd1" -Force
 }
 
-function Set-BoxstarterWindowsExplorerOptions {
+# Change some Windows Explorer configuration options. This matches the configuration
+# performed for Commando VM images:
+# https://github.com/mandiant/commando-vm/blob/688599b87966c757524a7a19a9a6de2359885b3f/install.ps1#L1050
+function Configure-Windows-Explorer {
     # See: https://boxstarter.org/winconfig#set-windowsexploreroptions
     Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
 }
