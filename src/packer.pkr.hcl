@@ -96,7 +96,7 @@ source "amazon-ebs" "windows" {
     device_name           = "/dev/sda1"
     encrypted             = true
     no_device             = false
-    volume_size           = 500
+    volume_size           = 100
     volume_type           = "gp3"
   }
   region             = var.build_region
@@ -163,6 +163,12 @@ build {
     ]
   }
 
+  provisioner "windows-restart" {
+    # Wait a maximum of 5 minutes for Windows to restart. The build will fail
+    # if the restart process takes longer than 5 minutes.
+    restart_timeout = "5m"
+  }
+
   provisioner "powershell" {
     # Create "packages" directory before uploading them in the next provisioner.
     inline = ["mkdir C:\\${var.packages_dir}"]
@@ -172,12 +178,6 @@ build {
     # Upload package lists to the "packages" directory.
     destination = "C:\\${var.packages_dir}"
     source      = "src/${var.packages_dir}/"
-  }
-
-  provisioner "windows-restart" {
-    # Wait a maximum of 5 minutes for Windows to restart. The build will fail
-    # if the restart process takes longer than 5 minutes.
-    restart_timeout = "5m"
   }
 
   provisioner "powershell" {
