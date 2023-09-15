@@ -42,7 +42,7 @@ variable "release_url" {
 
 variable "packages_dir" {
   default     = "packages"
-  description = "The directory where the list of packages are stored."
+  description = "The directory where the lists of packages are stored."
   type        = string
 }
 
