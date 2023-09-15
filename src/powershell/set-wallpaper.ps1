@@ -7,7 +7,7 @@ $destinationImage = "C:\background.png"
 # of standard elements of the Windows user interface
 #
 # SystemParametersInfo params:
-# uAction  - set to 20, which is an identifier for setting the desktop wallpaper.
+# uAction  - Set to 20, which is an identifier for setting the desktop wallpaper.
 #
 # The following parameters' purpose depends on the uAction parameter being set:
 # uParam   - Must be set to 0 when setting the desktop wallpaper.
