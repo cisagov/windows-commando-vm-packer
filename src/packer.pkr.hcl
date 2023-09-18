@@ -40,6 +40,12 @@ variable "release_url" {
   type        = string
 }
 
+variable "packages_dir" {
+  default     = "packages"
+  description = "The directory where the lists of packages are stored."
+  type        = string
+}
+
 variable "skip_create_ami" {
   default     = false
   description = "Indicate if Packer should not create the AMI."
@@ -87,9 +93,10 @@ source "amazon-ebs" "windows" {
   kms_key_id                  = var.build_region_kms
   launch_block_device_mappings {
     delete_on_termination = true
-    device_name           = "/dev/xvda"
+    device_name           = "/dev/sda1"
     encrypted             = true
-    volume_size           = 8
+    no_device             = false
+    volume_size           = 100
     volume_type           = "gp3"
   }
   region             = var.build_region
@@ -136,19 +143,57 @@ build {
   }
 
   provisioner "windows-restart" {
-    # Wait a maximum of 30 minutes for Windows to restart.
-    # The build will fail if the restart process takes longer than 30 minutes.
-    restart_timeout = "30m"
+    # Wait a maximum of 5 minutes for Windows to restart. The build will fail
+    # if the restart process takes longer than 5 minutes.
+    restart_timeout = "5m"
   }
 
   provisioner "powershell" {
-    # Wait 90 seconds before executing the check-defender.ps1 powershell script.
-    # This gives a generous grace period between restarting Windows and running the second provisioner.
-    pause_before = "90s"
-    scripts      = ["src/powershell/check-defender.ps1"]
+    # Wait 30 seconds before executing the next provisioner. This gives a grace
+    # period between restarting Windows and running the next provisioner.
+    # Disable Windows Defender, enable and configure RDP, set the desktop
+    # wallpaper, and install Chocolatey and Boxstarter.
+    pause_before = "30s"
+    scripts = [
+      "src/powershell/check-defender.ps1",
+      "src/powershell/enable-rdp.ps1",
+      "src/powershell/set-wallpaper.ps1",
+      "src/powershell/install-chocolatey.ps1",
+      "src/powershell/install-boxstarter.ps1"
+    ]
+  }
+
+  provisioner "windows-restart" {
+    # Wait a maximum of 5 minutes for Windows to restart. The build will fail
+    # if the restart process takes longer than 5 minutes.
+    restart_timeout = "5m"
   }
 
   provisioner "powershell" {
-    scripts = ["src/powershell/enable-rdp.ps1"]
+    # Create "packages" directory before uploading them in the next provisioner.
+    inline = ["mkdir C:\\${var.packages_dir}"]
+  }
+
+  provisioner "file" {
+    # Upload package lists to the "packages" directory.
+    destination = "C:\\${var.packages_dir}"
+    source      = "src/${var.packages_dir}/"
+  }
+
+  provisioner "powershell" {
+    # Install general packages.
+    environment_vars = ["Category=general", "PackagesDir=${var.packages_dir}"]
+    script           = "src/powershell/install-category.ps1"
+  }
+
+  provisioner "powershell" {
+    # Install virtual machine packages managed by Mandiant.
+    # See: https://github.com/mandiant/VM-Packages/tree/main/packages
+    environment_vars = ["Category=mandiant-vm", "PackagesDir=${var.packages_dir}"]
+    script           = "src/powershell/install-category.ps1"
+  }
+
+  provisioner "powershell" {
+    inline = ["Write-Output 'Complete!'"]
   }
 }
