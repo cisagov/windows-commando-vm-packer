@@ -1,10 +1,10 @@
 terraform {
   backend "s3" {
-    encrypt        = true
     bucket         = "cisa-cool-terraform-state"
     dynamodb_table = "terraform-state-lock"
+    encrypt        = true
+    key            = "windows-commando-vm-packer/terraform-build-user.tfstate"
     profile        = "cool-terraform-backend"
     region         = "us-east-1"
-    key            = "windows-commando-vm-packer/terraform-build-user.tfstate"
   }
 }
