@@ -1,8 +1,14 @@
 """Process user data file."""
 
+# Standard Python Libraries
+import os
+import sys
+
 # Third-Party Libraries
 import boto3
 from jinja2 import Template
+
+TARGET_FILE = "GITHUB_OUTPUT"
 
 ssm = boto3.client("ssm")
 
@@ -18,7 +24,10 @@ with open(user_data_file_location) as user_data_file:
         user_data_file_location
     )
 
-# This password is masked from logging when run via GH Actions.
-# But beware if this script is running elsewhere.
-print(f"::add-mask::{password}")
-print(f"::set-output name=pass::{password}")
+file_path = os.getenv(TARGET_FILE)
+if not file_path:
+    print(f"{TARGET_FILE} file was not found!", file=sys.stderr)
+    sys.exit(1)
+
+with open(file_path, "a") as output_file:
+    print(f"pass={password}", file=output_file)
