@@ -1,6 +1,8 @@
 # windows-commando-vm-packer 💀📦 #
 
 [![GitHub Build Status](https://github.com/cisagov/windows-commando-vm-packer/workflows/build/badge.svg)](https://github.com/cisagov/windows-commando-vm-packer/actions)
+[![License](https://img.shields.io/github/license/cisagov/windows-commando-vm-packer)](https://spdx.org/licenses/)
+[![CodeQL](https://github.com/cisagov/windows-commando-vm-packer/workflows/CodeQL/badge.svg)](https://github.com/cisagov/windows-commando-vm-packer/actions/workflows/codeql-analysis.yml)
 
 This project is based on FireEye's Complete Mandiant Offensive VM
 (aka Commando VM). It uses packer to provision a custom Windows
